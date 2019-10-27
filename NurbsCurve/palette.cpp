@@ -3,6 +3,8 @@
 #include <cmath>
 #include <QTextStream>
 #include <QMessageBox>
+#include <io.h>
+#include <direct.h>
 
 Palette::Palette(QWidget *parent) :
     QWidget(parent)
@@ -197,6 +199,7 @@ void Palette::paintEvent(QPaintEvent *event)
         painter->drawLine(150,400, 970,400);
     }
     delete painter;
+	painter = NULL;
 }
 
 void Palette::generateCurve(bool bIsseal)
@@ -659,6 +662,15 @@ void Palette::calOffsetCurve(QVector<QPointF> &mcurvePoints, QVector<QPointF> &m
     }
 
     //输出小于曲率半径的端点
+	if (_access("..\\..\\processData", 0) == -1)
+	{
+		int flag = _mkdir("..\\..\\processData");
+ 
+		if (flag != 0)
+		{
+			cout << "make failed" << endl;
+		}
+	}
     QFile file("..\\..\\processData\\output_badpoint.txt");
     if(!file.open(QIODevice::WriteOnly))
     {
