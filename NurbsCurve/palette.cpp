@@ -199,7 +199,7 @@ void Palette::paintEvent(QPaintEvent *event)
         painter->drawLine(150,400, 970,400);
     }
     delete painter;
-	painter = NULL;
+    painter = nullptr;
 }
 
 void Palette::generateCurve(bool bIsseal)
@@ -668,7 +668,7 @@ void Palette::calOffsetCurve(QVector<QPointF> &mcurvePoints, QVector<QPointF> &m
  
 		if (flag != 0)
 		{
-			cout << "make failed" << endl;
+            printf("make failed\n");
 		}
 	}
     QFile file("..\\..\\processData\\output_badpoint.txt");
